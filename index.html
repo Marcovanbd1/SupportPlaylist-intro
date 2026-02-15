@@ -2,487 +2,386 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Support Playlists · Neighbourhood Intelligence</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The hidden discharge constraint — a note for Mark Mould</title>
+  <meta name="description" content="A short operational note for Mark Mould, COO at University Hospitals Dorset. Discharge, flow, and the community layer that makes next steps usable in real life." />
+
+  <style>
+    :root{
+      --text:#171717;
+      --muted:#5a5a5a;
+      --bg:#ffffff;
+      --soft:#f6f7f8;
+      --border:#e7e7e7;
+      --accent:#0a4d3c;
+      --accent2:#0f6b55;
+      --max:780px;
+    }
+
+    *{ box-sizing:border-box; }
+
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      color:var(--text);
+      background:var(--bg);
+      line-height:1.65;
+    }
+
+    a{ color:var(--accent); text-decoration:none; }
+    a:hover{ text-decoration:underline; }
+
+    .wrap{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:56px 22px 96px;
+    }
+
+    .kicker{
+      display:inline-block;
+      padding:6px 10px;
+      border:1px solid var(--border);
+      border-radius:999px;
+      background:#fff;
+      color:var(--muted);
+      font-size:13px;
+      letter-spacing:.2px;
+    }
+
+    h1{
+      font-size:36px;
+      line-height:1.12;
+      margin:14px 0 10px;
+      letter-spacing:-.4px;
+    }
+
+    .sub{
+      margin:0 0 18px;
+      color:var(--muted);
+      font-size:18px;
+      max-width:66ch;
+    }
+
+    .meta{
+      margin:18px 0 0;
+      padding:14px 16px;
+      border:1px solid var(--border);
+      border-radius:14px;
+      background:linear-gradient(180deg, #ffffff 0%, #fbfbfb 100%);
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px 14px;
+      align-items:center;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .meta strong{ color:var(--text); font-weight:600; }
+
+    .hr{
+      height:1px;
+      background:var(--border);
+      margin:28px 0;
+    }
+
+    h2{
+      font-size:20px;
+      margin:0 0 10px;
+      letter-spacing:-.2px;
+    }
+
+    p{ margin:0 0 14px; }
+
+    .callout{
+      border-left:4px solid var(--accent2);
+      padding:12px 14px;
+      background:#f3fbf8;
+      border-radius:10px;
+      margin:14px 0;
+    }
+
+    .callout p{ margin:0 0 8px; }
+    .callout p:last-child{ margin:0; }
+
+    .card{
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:18px 18px 16px;
+      background:var(--soft);
+      margin:14px 0;
+    }
+
+    .card h3{
+      margin:0 0 8px;
+      font-size:16px;
+      letter-spacing:-.1px;
+    }
+
+    ul{
+      margin:10px 0 0 20px;
+      padding:0;
+    }
+
+    li{ margin:6px 0; }
+
+    .pillrow{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin:10px 0 0;
+    }
+
+    .pill{
+      font-size:13px;
+      border:1px solid var(--border);
+      padding:7px 10px;
+      border-radius:999px;
+      background:#fff;
+      color:var(--muted);
+    }
+
+    .two{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:14px;
+      margin:12px 0 2px;
+    }
+
+    @media(min-width:860px){
+      .two{ grid-template-columns: 1fr 1fr; }
+    }
+
+    .cta{
+      margin:22px 0 0;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+    }
+
+    .btn{
+      display:inline-block;
+      padding:11px 14px;
+      border-radius:12px;
+      background:var(--accent);
+      color:#fff;
+      font-weight:600;
+      font-size:14px;
+      border:1px solid var(--accent);
+    }
+
+    .btn:hover{
+      background:#083d30;
+      text-decoration:none;
+    }
+
+    .btn2{
+      display:inline-block;
+      padding:11px 14px;
+      border-radius:12px;
+      background:#fff;
+      color:var(--accent);
+      font-weight:600;
+      font-size:14px;
+      border:1px solid var(--border);
+    }
+
+    .btn2:hover{
+      border-color:#cfd6d3;
+      text-decoration:none;
+    }
+
+    .small{
+      font-size:13px;
+      color:var(--muted);
+    }
+
+    footer{
+      margin-top:44px;
+      padding-top:18px;
+      border-top:1px solid var(--border);
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .tight{ margin-bottom:8px; }
+  </style>
 </head>
+
 <body>
-  <main class="page">
-    <header class="site-header">
-      <div class="site-header-inner">
-        <div class="site-label">Neighbourhood Intelligence</div>
-        <nav class="site-nav">
-          <a href="#pressure">The pressure</a>
-          <a href="#sarah">Sarah</a>
-          <a href="#sarah-playlist">Playlist</a>
-          <a href="#playlists">Platform agnostic</a>
-          <a href="#dsi">DSI</a>
-          <a href="#data">PCN data</a>
-          <a href="#neighbourhood">Neighbourhood</a>
-          <a href="#invitation">Next</a>
-        </nav>
-      </div>
-    </header>
+  <main class="wrap">
+    <span class="kicker">A short operational note for Mark Mould, COO at University Hospitals Dorset</span>
 
-    <section id="pressure" class="section">
-      <div class="section-inner">
-        <p class="eyebrow">The Core Question</p>
-        <h1>The pressure is building long before you see it</h1>
-        <p>
-          Right now, in your area, people are quietly searching for help.
-        </p>
-        <p>
-          Not with forms.<br>
-          Not with filters.<br>
-          With real questions.
-        </p>
-        <p class="quote">
-          “Why do I feel so anxious.”<br>
-          “I cannot pay the rent this month.”<br>
-          “Mum is getting worse. I do not know what to do.”
-        </p>
-        <p>
-          Most of this never reaches your dashboards.<br>
-          You only see the late stage: crisis, appointments, unplanned care.
-        </p>
-        <p>
-          What if you could see the early signals, in plain English, and act before things broke.
+    <h1>The hidden discharge constraint</h1>
+    <p class="sub">
+      Control centres can see pressure in real time. What they rarely see is whether the person leaving hospital knows what to do next.
+    </p>
+
+    <div class="meta">
+      <span><strong>From:</strong> Mark Winterburn</span>
+      <span><strong>Focus:</strong> discharge, flow, community handover</span>
+      <span><strong>Context:</strong> neighbourhood-level infrastructure</span>
+      <span>🔗 <a href="https://neighbourhoodcolab.netlify.app/" target="_blank" rel="noopener">neighbourhoodcolab.netlify.app</a></span>
+    </div>
+
+    <div class="hr"></div>
+
+    <h2>Why this matters</h2>
+    <p>
+      Your post about extending acute control centres into the community was unusually precise. It points to a real operational gap.
+    </p>
+    <p>
+      Hospitals can determine when someone is medically ready to leave. But the system is weaker at the moment life resumes.
+      Support becomes fragmented, instructions become interpretation, and responsibility shifts silently to the person or family.
+    </p>
+
+    <div class="callout">
+      <p><strong>Constraint:</strong> discharge decisions are visible. Real-world follow-through is not.</p>
+      <p class="small">That gap quietly drives avoidable contacts, avoidable anxiety, and avoidable returns.</p>
+    </div>
+
+    <div class="hr"></div>
+
+    <h2>What I’m building</h2>
+    <p>
+      An approach called <strong>Support Playlists</strong>. Think of it as a discharge and recovery companion layer designed for real life, not service structures.
+    </p>
+
+    <div class="card">
+      <h2 style="margin:0 0 8px;">In plain terms</h2>
+      <p class="tight">
+        A Support Playlist is a clear, personalised set of next steps and support options based on what someone says is happening, where they live, and what support actually exists nearby.
+      </p>
+      <p class="tight">
+        Delivered in a format that works under stress, on a phone, in minutes.
+      </p>
+      <div class="callout" style="margin:12px 0 0;">
+        <p class="tight"><strong>Not:</strong> “Which service do I pick?”</p>
+        <p><strong>But:</strong> “Here’s what to do next.”</p>
+      </div>
+
+      <div class="pillrow">
+        <span class="pill">post-discharge</span>
+        <span class="pill">community navigation</span>
+        <span class="pill">reduces avoidable contacts</span>
+        <span class="pill">equity by default</span>
+      </div>
+    </div>
+
+    <div class="hr"></div>
+
+    <h2>Why this is operationally useful</h2>
+
+    <div class="two">
+      <div class="card" style="background:#fff;">
+        <h3>1. Fewer avoidable rebounds</h3>
+        <p style="margin:0;">
+          When next steps are obvious, people are less likely to default to A&E, 999, or ward calls. The aim is to make the right support easier to reach than staying confused.
         </p>
       </div>
-    </section>
 
-    <section id="sarah" class="section">
-      <div class="section-inner">
-        <p class="eyebrow">A human moment</p>
-        <h2>Meet Sarah. Thirty four. Awake at 11pm.</h2>
-        <p>
-          She is not filling in a form.<br>
-          She is not choosing from a menu of services.
+      <div class="card" style="background:#fff;">
+        <h3>2. A community extension that actually acts</h3>
+        <p style="margin:0;">
+          Control centres can see pressure. This provides a mechanism for the community layer to respond to it. Not visibility alone, usable next steps.
         </p>
-        <p>
-          She is just saying what is going on.
+      </div>
+
+      <div class="card" style="background:#fff;">
+        <h3>3. Cleaner handover language</h3>
+        <p style="margin:0;">
+          Discharge advice is often policy-shaped. Support Playlists translate it into action-shaped guidance, in everyday words.
         </p>
-        <p class="quote">
-          “I feel anxious all the time. I am not sleeping. I do not want to bother my GP.”
+      </div>
+
+      <div class="card" style="background:#fff;">
+        <h3>4. Better equity under pressure</h3>
+        <p style="margin:0;">
+          The people most at risk are usually least able to navigate complexity. This reduces reliance on insider knowledge.
         </p>
-        <p>
-          The system understands enough.<br>
-          Not everything. Just enough.
-        </p>
-        <p>
-          A <span class="highlight">Support Playlist</span> appears. A small, human set of next steps:
-        </p>
+      </div>
+    </div>
+
+    <div class="hr"></div>
+
+    <h2>Where this fits your model</h2>
+    <p>
+      If control centres evolve beyond the acute site, there is a natural division of labour:
+    </p>
+
+    <div class="two">
+      <div class="card" style="background:#fff;">
+        <h3>Control centre</h3>
         <ul>
-          <li>A local walking group</li>
-          <li>Your mental health service, with a simple self referral</li>
-          <li>A trusted online programme for anxiety</li>
-          <li>A short explainer on sleep, written in plain English</li>
+          <li>real-time awareness</li>
+          <li>flow decisions</li>
+          <li>escalation</li>
         </ul>
-        <p>
-          She does not need to know the name of a service.<br>
-          She does not need to understand the system.
-        </p>
-        <p>
-          She just says what is happening.<br>
-          The Support Playlist quietly gathers what might help.
-        </p>
-        <p>
-          Plain English.<br>
-          Human shaped.<br>
-          Not diagnosis.<br>
-          Not treatment.<br>
-          A smarter way to navigate support.
-        </p>
       </div>
-    </section>
 
-    <section id="sarah-playlist" class="section">
-      <div class="section-inner">
-        <p class="eyebrow">What Sarah actually sees</p>
-        <h2>Sarah’s Support Playlist</h2>
-        <p>
-          Time sequenced, context aware, personalised for her actual situation.
-        </p>
-
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-card">
-              <p class="pill pill-soft">Right now · Tonight</p>
-              <h3>Late Night Text Support</h3>
-              <p>
-                Confidential text based support until midnight. No waiting room, no phone call.
-                Space to talk through what is happening and feel less alone.
-              </p>
-              <p class="pill pill-green">High match for your situation</p>
-            </div>
-          </div>
-
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-card">
-              <p class="pill pill-soft">Tomorrow</p>
-              <h3>Self Referral to Talking Therapies</h3>
-              <p>
-                Simple online self referral to your local NHS talking therapies service.
-                Takes around 10 minutes. Phone support available if needed.
-              </p>
-              <p class="pill pill-green">Used by thousands locally</p>
-            </div>
-          </div>
-
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-card">
-              <p class="pill pill-soft">This week</p>
-              <h3>Walk and Talk Group · Wednesday 6pm</h3>
-              <p>
-                Gentle evening walk with others who are feeling low or anxious.
-                No pressure to talk. Just turn up and join when you are ready.
-              </p>
-              <p class="pill pill-green">Strong impact on sleep and mood</p>
-            </div>
-          </div>
-
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-card">
-              <p class="pill pill-soft">Building forward</p>
-              <h3>Money and Benefits Advice Call</h3>
-              <p>
-                One to one call with a local adviser to check benefits, debt and housing options.
-                Helpful if money worries are sitting behind the anxiety.
-              </p>
-              <p class="pill pill-green">Reduces repeat crisis contacts</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="playlists" class="section">
-      <div class="section-inner">
-        <p class="eyebrow">Platform agnostic by design</p>
-        <h2>Support Playlists live where your people already are</h2>
-        <p>
-          Support Playlists are <span class="highlight">platform agnostic</span>.
-        </p>
-        <p>
-          They do not replace anything.<br>
-          They sit inside everything.
-        </p>
-        <p>They can appear:</p>
-        <ul class="two-column">
-          <li>In your smart triage</li>
-          <li>During a GP or nurse consultation</li>
-          <li>In a social prescriber or care coordinator workflow</li>
-          <li>On your PCN website</li>
-          <li>Behind a QR code in a waiting room or community venue</li>
-          <li>On a council or voluntary sector page</li>
-        </ul>
-        <p>
-          No rip and replace.<br>
-          No vendor lock in.<br>
-          Just <span class="highlight">plug Support Playlists into what you already use</span>, and people start getting better options.
-        </p>
-
-        <div class="diagram">
-          <div class="diagram-column diagram-inputs">
-            <p class="diagram-title">Where requests can start</p>
-            <div class="diagram-chip">Smart Triage</div>
-            <div class="diagram-chip">GP Practice Website</div>
-            <div class="diagram-chip">IAPT Self Referral Portal</div>
-            <div class="diagram-chip">Community Website</div>
-            <div class="diagram-chip">NHS App / Chatbot</div>
-          </div>
-
-          <div class="diagram-column diagram-core">
-            <p class="diagram-title">Intelligence layer</p>
-            <div class="diagram-core-box">
-              SUPPORT PLAYLISTS<br>Intelligence Layer
-            </div>
-          </div>
-
-          <div class="diagram-column diagram-output">
-            <p class="diagram-title">What people receive</p>
-            <div class="diagram-output-box">
-              Personalised<br>Support Playlist
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="dsi" class="section">
-      <div class="section-inner">
-        <p class="eyebrow">The learning layer</p>
-        <h2>From one story to genuine intelligence</h2>
-        <p>
-          Every Support Playlist begins as a human moment.<br>
-          But together, they form a pattern.
-        </p>
-        <p>
-          This is <span class="highlight">Demand Shaping Intelligence</span>.
-        </p>
-        <p>
-          It focuses on signals, not identities:
-        </p>
+      <div class="card" style="background:#fff;">
+        <h3>Neighbourhood layer</h3>
         <ul>
-          <li>How many people are asking for help with anxiety</li>
-          <li>Where money, food, and housing appear together</li>
-          <li>When carers are looking for support</li>
-          <li>What people try before approaching the GP</li>
-          <li>Which needs rise first, and where</li>
+          <li>next-step navigation</li>
+          <li>continuity support</li>
+          <li>family clarity</li>
         </ul>
-        <p>
-          DSI turns everyday requests into a <span class="highlight">live view of demand</span>.
-        </p>
-        <p>It helps you:</p>
+      </div>
+
+      <div class="card" style="background:#fff;">
+        <h3>Feedback layer</h3>
         <ul>
-          <li>Spot pressure building early</li>
-          <li>Strengthen non clinical options</li>
-          <li>Shape provision rather than react to crisis</li>
-        </ul>
-        <p>
-          This is not another reporting tool.<br>
-          It is a learning layer that becomes more useful every day.
-        </p>
-      </div>
-    </section>
-
-    <section id="data" class="section">
-      <div class="section-inner">
-        <p class="eyebrow">Proof of concept</p>
-        <h2>A real example from one Primary Care Network</h2>
-        <p>
-          Over 28 days, the Weymouth and Portland PCN website quietly became a <span class="highlight">neighbourhood signal layer</span>.
-        </p>
-
-        <div class="stats-grid">
-          <div class="stat-card">
-            <div class="stat-number">353</div>
-            <div class="stat-label">unique visitors</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number">405</div>
-            <div class="stat-label">visits</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number">948</div>
-            <div class="stat-label">pageviews</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number">3m 22s</div>
-            <div class="stat-label">average time on site</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number">2.34</div>
-            <div class="stat-label">pages per visit</div>
-          </div>
-        </div>
-
-        <p>
-          This is real engagement, not casual clicking.
-        </p>
-        <p>
-          People found it directly.<br>
-          People found it through Google.<br>
-          People arrived from Microsoft Teams, pcnquicklinks.org and thelocalsocial.org.
-        </p>
-        <p>
-          The ecosystem is beginning to work as intended.
-        </p>
-
-        <p>
-          The strongest signal is <span class="highlight">mental health and wellbeing</span>:
-        </p>
-        <ul>
-          <li>55 unique visitors</li>
-          <li>71 total visits</li>
-        </ul>
-
-        <p>Followed by healthy living, then crisis and safety.</p>
-
-        <p>People are also looking for:</p>
-        <ul class="two-column">
-          <li>Caring for someone</li>
-          <li>Food and money help</li>
-          <li>Community support</li>
-          <li>Family and parenting</li>
-          <li>Home and housing</li>
-        </ul>
-
-        <p>
-          Framing the site around <span class="highlight">everyday needs</span>, not clinical labels, is working.<br>
-          People see themselves immediately.
-        </p>
-
-        <p>
-          Most use Microsoft Edge, Chrome or Safari, suggesting both NHS staff and residents are moving through the same front door.
-        </p>
-
-        <p>
-          In one month, the pilot is already:
-        </p>
-        <ul>
-          <li>Revealing emotional strain</li>
-          <li>Showing prevention in action</li>
-          <li>Validating a community based model</li>
-          <li>Demonstrating a real appetite for non clinical support</li>
+          <li>aggregated patterns of need</li>
+          <li>early signals</li>
+          <li>operational intelligence</li>
         </ul>
       </div>
-    </section>
 
-    <section id="neighbourhood" class="section">
-      <div class="section-inner">
-        <p class="eyebrow">The place based view</p>
-        <h2>Seeing your neighbourhood in real time</h2>
-        <p>
-          When Support Playlists and DSI combine, something more powerful emerges.
-        </p>
-        <p>
-          <span class="highlight">Neighbourhood Intelligence.</span>
-        </p>
-        <p>
-          This is not surveillance.<br>
-          It is not tracking individuals.
-        </p>
-        <p>
-          It is the <span class="highlight">shape of need</span> across a place.
-        </p>
-        <p>
-          For PCNs, ICSs, Integrated Neighbourhood Teams and local partners, it shows:
-        </p>
-        <ul>
-          <li>Where emotional pressure is rising</li>
-          <li>Which communities need food or money support</li>
-          <li>How often carers are searching for help</li>
-          <li>Whether people are trying healthy living options before crisis</li>
-          <li>The impact of new services as they go live</li>
-        </ul>
-        <p>
-          It is anonymous.<br>
-          It is aggregated.<br>
-          It is local.
-        </p>
-        <p>
-          It gives you a shared map of strain, resilience, and opportunity.<br>
-          A clearer way to target effort where it matters most.
+      <div class="card" style="background:#fff;">
+        <h3>Policy direction</h3>
+        <p style="margin:0;">
+          This direction is consistent with the NHS Ten Year Plan’s shift toward neighbourhood care, prevention, and earlier intervention. The difference is the focus on a practical mechanism that makes that shift operational.
         </p>
       </div>
-    </section>
+    </div>
 
-    <section id="safety" class="section">
-      <div class="section-inner">
-        <p class="eyebrow">Safety and simplicity</p>
-        <h2>Not a medical device. Not another burden.</h2>
-        <p>
-          This is not diagnosis.<br>
-          It is not clinical decision making.
-        </p>
-        <p>
-          It is the digital equivalent of a receptionist, social prescriber or care coordinator saying:
-        </p>
-        <p class="quote">
-          “Here are a few things that might help. Let us start here.”
-        </p>
+    <div class="callout">
+      <p><strong>This is not another system.</strong> It’s a translation layer between discharge and real life.</p>
+    </div>
 
-        <div class="columns">
-          <div>
-            <h3>You hold</h3>
-            <ul>
-              <li>Your services and resources</li>
-              <li>Your descriptions</li>
-              <li>Your priorities</li>
-              <li>Your pathways</li>
-            </ul>
-          </div>
-          <div>
-            <h3>We hold</h3>
-            <ul>
-              <li>The matching logic</li>
-              <li>The intelligence layer</li>
-              <li>The technical upkeep</li>
-            </ul>
-          </div>
-        </div>
+    <div class="hr"></div>
 
-        <p>
-          No complex installation.<br>
-          No need for an AI team.<br>
-          No medical device classification.
-        </p>
-        <p>
-          Just a quieter, smarter way for people to find help.
-        </p>
-      </div>
-    </section>
+    <h2>Governance</h2>
+    <p>
+      Designed to be safe to test early:
+    </p>
+    <ul>
+      <li>no patient-identifiable data required for initial learning</li>
+      <li>small cohort start possible</li>
+      <li>sits within existing governance structures</li>
+    </ul>
 
-    <section id="outcomes" class="section">
-      <div class="section-inner">
-        <p class="eyebrow">By role</p>
-        <h2>What this unlocks</h2>
+    <div class="hr"></div>
 
-        <div class="columns">
-          <div>
-            <h3>For PCNs and GP practices</h3>
-            <ul>
-              <li>Reduce avoidable clinical demand</li>
-              <li>Offer clearer first steps</li>
-              <li>Understand pressure earlier</li>
-            </ul>
-          </div>
-          <div>
-            <h3>For ICSs and commissioners</h3>
-            <ul>
-              <li>A real time view of need</li>
-              <li>Better decision making for prevention</li>
-              <li>Evidence for investment</li>
-            </ul>
-          </div>
-        </div>
+    <h2>Simple next step</h2>
+    <p>
+      If useful, I can share a short example of what this looks like in practice for a discharge scenario, and we can quickly test whether it would actually reduce friction.
+    </p>
 
-        <div class="columns">
-          <div>
-            <h3>For Integrated Neighbourhood Teams</h3>
-            <ul>
-              <li>A shared picture of local need</li>
-              <li>Better coordination across partners</li>
-              <li>Early visibility of gaps</li>
-            </ul>
-          </div>
-          <div>
-            <h3>For funders</h3>
-            <ul>
-              <li>A working proof of concept</li>
-              <li>A scalable, platform agnostic architecture</li>
-              <li>A practical route to early intervention</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
+    <div class="cta">
+      <a class="btn" href="https://neighbourhoodcolab.netlify.app/" target="_blank" rel="noopener">Neighbourhood CoLab</a>
+      <a class="btn2" href="mailto:mark.winterburn@nhs.net?subject=UHD%20control%20centres%20and%20the%20hidden%20discharge%20constraint&body=Hi%20Mark%2C%0A%0AI%20saw%20your%20post%20about%20extending%20acute%20control%20centres%20into%20the%20community.%20I%E2%80%99ve%20been%20building%20a%20discharge%20and%20recovery%20navigation%20layer%20called%20Support%20Playlists.%20Happy%20to%20share%20a%20short%20example%20and%20sanity-check%20whether%20it%20could%20reduce%20friction.%0A%0ABest%2C%0AMark">Email me</a>
+      <span class="small">Or reply on LinkedIn and I’ll send a one-page version.</span>
+    </div>
 
-    <section id="invitation" class="section section-final">
-      <div class="section-inner">
-        <p class="eyebrow">Next step</p>
-        <h2>From one neighbourhood to many</h2>
-        <p>
-          This work is live in Weymouth and Portland Primary Care Network.
-        </p>
-        <p>
-          We are opening conversations with partners who want to explore what this could look like in their own areas.
-        </p>
-        <div class="cta-row">
-          <a class="button" href="https://ourdigitaloffer.replit.app/signals.html" target="_blank" rel="noopener noreferrer">
-            See the local modelling
-          </a>
-          <p class="cta-email">
-            Or email <a href="mailto:hello@neighbourhoodcolab.co.uk">hello@neighbourhoodcolab.co.uk</a>
-          </p>
-        </div>
-      </div>
-    </section>
+    <footer>
+      <p style="margin:0 0 10px;">
+        Built by Mark Winterburn, on Portland, Dorset. Neighbourhood navigation, demand-shaping intelligence, operational relief.
+      </p>
+      <p style="margin:0;">
+        Reference link: <a href="https://neighbourhoodcolab.netlify.app/" target="_blank" rel="noopener">neighbourhoodcolab.netlify.app</a>
+      </p>
+    </footer>
   </main>
 </body>
 </html>
